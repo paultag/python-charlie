@@ -2,9 +2,9 @@
 
 import charlie
 
-for line in charlie.Lines:
+for line in charlie.line_list:
     print line
-    for station in charlie.Lines[line].getStations():
+    for station in charlie.line_list[line].getStations():
         print "  " + station
-        for platform in charlie.Stations[station].getPlatforms():
+        for platform in charlie.station_list[station].getPlatforms():
             print "    " + platform
