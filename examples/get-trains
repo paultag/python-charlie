@@ -3,6 +3,6 @@
 import charlie
 
 for train in charlie.train_list:
-    if train == 60:
+    if train == 363:
         train = charlie.train_list[train]
         print train.getMostCloseEvent()

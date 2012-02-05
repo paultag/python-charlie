@@ -1,6 +1,7 @@
 #
 
 import datetime as dt
+import charlie
 
 trains = {}
 
@@ -23,16 +24,22 @@ class Train:
 
     def getMostCloseEvent(self):
         events = self.getEvents()
-        lEventT= dt.datetime(1970, 1, 1) 
+
+        #for time, event in events:
+        #    print time
+
+        lEventT= charlie.epoch
         lEvent = None
-        now    = dt.datetime.now()
+        now    = dt.datetime.now(charlie.TIMEZONE)
+        # print "It's now: %s" % now
+
         for date, key in events:
-            if ( date - now ) > ( lEventT - now ):
+            if abs( date - now ) < abs( lEventT - now ):
                 lEventT, lEvent = date, key
         return lEvent
 
     def getLastKnownEvent(self):
-        lke = { "TargetTime" : dt.datetime(1970, 1, 1) }
+        lke = { "TargetTime" : charlie.epoch } # XXX: Fixme
         # print self.stopdata
         for item in self.stopdata:
             d = self.stopdata[item]["TargetTime"]
@@ -45,6 +52,8 @@ class Train:
             raise Exception("That's not me!") # XXX: Fixme
 
         time = dt.datetime.strptime(goodies["Time"], "%m/%d/%Y %I:%M:%S %p")
+        time = time.replace( tzinfo=charlie.TIMEZONE )
+
         goodies["Time"] = time
         delt = goodies["TimeRemaining"]
         neg = False
