@@ -13,8 +13,8 @@ def load_trains( line ):
         tripid = train['Trip']
         if not tripid in cT.trains:
             t = cT.Train( tripid )
-            t.setGoodies( train )
             cT.trains[tripid] = t
+        t.addInfo( train )
 
 
 def load_lines( data ):

@@ -18,7 +18,8 @@ _cache_file_raw = "~/.python-charlie.cache"
 _cache_file      = os.path.expanduser(_cache_file_raw)
 
 # _apiurl     = "http://developer.mbta.com/Data/"
-_apiurl     = "http://tag.pault.ag/charlie-fake/"
+# _apiurl     = "http://tag.pault.ag/charlie-fake/"
+_apiurl      = "http://localhost/"
 _datadir    = "/home/tag/dev/local/python-charlie/data"
 _csvfile    = _datadir + "/station.data.csv"
 

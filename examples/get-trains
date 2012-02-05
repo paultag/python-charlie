@@ -1,37 +1,9 @@
 #!/usr/bin/env python
 
 import charlie
-import json
-
-ret = []
-
-hs = [ "x", "y", "name" ]
-inf = open("tlocs", 'r').readlines()
-inf = [ s.strip().split(",") for s in inf ]
-stop_trans = {}
-
-for line in inf:
-    l = {}
-    for x in range(0,len(hs)):
-        try:
-            line[x] = int(line[x])
-        except Exception:
-            pass
-        l[hs[x]] = line[x]
-    stop_trans[l['name']] = l
 
 for train in charlie.train_list:
-    train = charlie.train_list[train]
-    platform = train.getLastKnownPlatform()
-    station  = charlie.station_list[ \
-        charlie.stop_list[platform].getStationName()]
-    try:
-        ret.append({
-            "trip"     : train.getTrip(),
-            "station"  : station.name,
-            "platform" : stop_trans[station.name],
-        })
-    except KeyError as e:
-        pass
-
-print json.dumps(ret)
+    if train == 60:
+        train = charlie.train_list[train]
+        platform = train.getLastKnownEvent()
+        print platform

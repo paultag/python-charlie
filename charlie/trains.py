@@ -6,15 +6,25 @@ trains = {}
 
 class Train:
     def __init__(self, name):
-        self.name = name
+        self.name     = name
+        self.stopdata = {}
 
-    def setGoodies(self, goodies):
+    def getLastKnownEvent(self):
+        lke = { "TargetTime" : dt.datetime(1970, 1, 1) }
+        # print self.stopdata
+        for item in self.stopdata:
+            d = self.stopdata[item]["TargetTime"]
+            if d > lke["TargetTime"]:
+                lke = self.stopdata[item]
+        return lke
+
+    def addInfo(self, goodies):
         if goodies["Trip"] != self.name:
             raise Exception("That's not me!") # XXX: Fixme
-        self._goodies = goodies
-        time = dt.datetime.strptime(goodies["Time"], "%m/%d/%Y %H:%M:%S %p")
-        self._goodies["Time"] = time
-        delt = self._goodies["TimeRemaining"]
+
+        time = dt.datetime.strptime(goodies["Time"], "%m/%d/%Y %I:%M:%S %p")
+        goodies["Time"] = time
+        delt = goodies["TimeRemaining"]
         neg = False
         if delt[:1] == "-":
             neg = True
@@ -25,29 +35,6 @@ class Train:
             t = time - delt
         else:
             t = time + delt
-        self._goodies["TargetTime"] = t
-        self._goodies["TimeRemaining"] = delt
-
-    def _goodie(self, goodie):
-        return self._goodies[goodie]
-
-    # foo
-
-    def getLine(self):
-        return self._goodie("Line")
-    def getTrip(self):
-        return self._goodie("Trip")
-    def getTargetTime(self):
-        return self._goodie("TargetTime")
-    def getLastKnownPlatform(self):
-        return self._goodie("PlatformKey")
-    def getLastKnownCheckinType(self):
-        return self._goodie("InformationType")
-    def getTime(self):
-        return self._goodie("Time")
-    def getTimeRemaining(self):
-        return self._goodie("TimeRemaining")
-    def getRevenue(self):
-        return self._goodie("Revenue")
-    def getRoute(self):
-        return self._goodie("Route")
+        goodies["TargetTime"] = t
+        goodies["TimeRemaining"] = delt
+        self.stopdata[goodies["PlatformKey"]] = goodies
