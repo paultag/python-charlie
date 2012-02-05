@@ -13,6 +13,10 @@ stop_trans = {}
 for line in inf:
     l = {}
     for x in range(0,len(hs)):
+        try:
+            line[x] = int(line[x])
+        except Exception:
+            pass
         l[hs[x]] = line[x]
     stop_trans[l['name']] = l
 
