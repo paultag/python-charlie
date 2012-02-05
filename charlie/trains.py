@@ -9,6 +9,25 @@ class Train:
         self.name     = name
         self.stopdata = {}
 
+    def getEvents(self):
+        ret = []
+        for key in self.stopdata:
+            ret.append((
+                self.stopdata[key]["TargetTime"],
+                self.stopdata[key]
+            ))
+        return sorted( ret )
+
+    def getMostCloseEvent(self):
+        events = self.getEvents()
+        lEventT= dt.datetime(1970, 1, 1) 
+        lEvent = None
+        now    = dt.datetime.now()
+        for date, key in events:
+            if ( date - now ) > ( lEventT - now ):
+                lEventT, lEvent = date, key
+        return lEvent
+
     def getLastKnownEvent(self):
         lke = { "TargetTime" : dt.datetime(1970, 1, 1) }
         # print self.stopdata

@@ -5,5 +5,4 @@ import charlie
 for train in charlie.train_list:
     if train == 60:
         train = charlie.train_list[train]
-        platform = train.getLastKnownEvent()
-        print platform
+        print train.getMostCloseEvent()
