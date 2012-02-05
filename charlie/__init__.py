@@ -1,6 +1,14 @@
 import os
 import charlie.data
 
+import charlie.stops
+import charlie.stations
+import charlie.lines
+
+Stops    = charlie.stops.stops
+Stations = charlie.stations.stations
+Lines    = charlie.lines.lines
+
 __appname__ = "python-charlie"
 __version__ = "0.1~pre1"
 

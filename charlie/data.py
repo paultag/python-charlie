@@ -27,12 +27,14 @@ def load_stations( data ):
 
 def load_platforms( data ):
     for platform in data:
-        sid = platform["stop_id"]
+        sid = platform["PlatformKey"]
+        host = platform["StationName"]
+
         if sid not in cSp.stops:
             stop = cSp.Stop(sid)
             stop.setGoodies(platform)
             cSp.stops[sid] = stop
-            cS.stations[platform["StationName"]].addStop(sid, stop)
+            cS.stations[host].addPlatform(sid, stop)
 
 def load_data( csv ):
     data = open(csv, 'r').readlines()

@@ -4,8 +4,8 @@ stations = {}
 
 class Station:
     def __init__(self, name):
-        self.name = name
-        self.platforms = {}
+        self.name   = name
+        self.lookup = {}
 
     def setLat(self, lat):
         self.lat = lat
@@ -14,9 +14,9 @@ class Station:
     def setLine(self, line):
         self.line = line
 
-    def addStop(self, platform_name, platform):
-        self.platforms[platform_name] = platform
-    def getStop(self, platform_name):
-        return platforms[platform_name]
-    def getStops(self):
-        return platforms
+    def addPlatform(self, platkey, stop):
+        self.lookup[platkey] = stop
+    def getPlatforms(self):
+        return self.lookup
+    def getPlatform(self, name):
+        return self.lookup[name]
