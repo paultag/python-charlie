@@ -5,4 +5,11 @@ import charlie
 for train in charlie.train_list:
     train = charlie.train_list[train]
     curStop = train.getNextEvent()
-    print curStop
+    if not curStop:
+        continue
+
+    preStop = train.getStop( curStop["prev"] )
+    if not preStop:
+        continue
+
+    print ( curStop["TargetTime"] - preStop["TargetTime"] )
