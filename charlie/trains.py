@@ -18,6 +18,9 @@ class Train:
             ))
         return sorted( ret )
 
+    def getTrip(self):
+        return self.name
+
     def getMostCloseEvent(self):
         events = self.getEvents()
         lEventT= dt.datetime(1970, 1, 1) 
