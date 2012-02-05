@@ -7,7 +7,10 @@ trains = {}
 class Train:
     def __init__(self, name):
         self.name = name
+
     def setGoodies(self, goodies):
+        if goodies["Trip"] != self.name:
+            raise Exception("That's not me!") # XXX: Fixme
         self._goodies = goodies
         time = dt.datetime.strptime(goodies["Time"], "%m/%d/%Y %H:%M:%S %p")
         self._goodies["Time"] = time

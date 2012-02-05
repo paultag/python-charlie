@@ -11,14 +11,16 @@ def load_trains( line ):
     trains = transport.fetch_line(line)
     for train in trains:
         tripid = train['Trip']
-        t = cT.Train( tripid )
-        t.setGoodies( train )
-        cT.trains[tripid] = t
+        if not tripid in cT.trains:
+            t = cT.Train( tripid )
+            t.setGoodies( train )
+            cT.trains[tripid] = t
+
 
 def load_lines( data ):
     for platform in data:
         line = platform["Line"]
-        if line not in cL.lines:
+        if not line in cL.lines:
             cL.lines[line] = cL.Line(line)
 
 def load_stations( data ):
