@@ -4,10 +4,12 @@ import charlie.data
 import charlie.stops
 import charlie.stations
 import charlie.lines
+import charlie.trains
 
 stop_list    = charlie.stops.stops
 station_list = charlie.stations.stations
 line_list    = charlie.lines.lines
+train_list   = charlie.trains.trains
 
 __appname__ = "python-charlie"
 __version__ = "0.1~pre1"

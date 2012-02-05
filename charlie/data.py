@@ -3,6 +3,17 @@ import json
 import charlie.lines      as cL
 import charlie.stops      as cSp
 import charlie.stations   as cS
+import charlie.trains     as cT
+
+import charlie.transport  as transport
+
+def load_trains( line ):
+    trains = transport.fetch_line(line)
+    for train in trains:
+        tripid = train['Trip']
+        t = cT.Train( tripid )
+        t.setGoodies( train )
+        cT.trains[tripid] = t
 
 def load_lines( data ):
     for platform in data:
@@ -52,3 +63,6 @@ def load_data( csv ):
     load_lines( zData )
     load_stations( zData )
     load_platforms( zData )
+
+    #for line in cL.lines:
+    load_trains("Red")#line)
