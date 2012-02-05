@@ -3,6 +3,6 @@
 import charlie
 
 for train in charlie.train_list:
-    if train == 363:
-        train = charlie.train_list[train]
-        print train.getMostCloseEvent()
+    train = charlie.train_list[train]
+    curStop = train.getNextEvent()
+    print curStop

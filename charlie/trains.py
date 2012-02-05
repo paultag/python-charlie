@@ -19,20 +19,33 @@ class Train:
             ))
         return sorted( ret )
 
+    def link_stops(self):
+        events = self.getEvents()
+        for i in range(1, len(events)):
+            events[i - 1][1]['next'] = events[i][1]["PlatformKey"]
+            events[i][1]["prev"] = events[i - 1][1]["PlatformKey"]
+
+    def getStop(self, name):
+        return self.stopdata[name]
+
     def getTrip(self):
         return self.name
 
+    def getNextEvent(self, f=None):
+        if f == None:
+            f = self.getMostCloseEvent()
+        if f["InformationType"] != "Predicted":
+            try:
+                return self.getNextEvent( self.stopdata[f["next"]] )
+            except KeyError:
+                return None
+        return f
+
     def getMostCloseEvent(self):
         events = self.getEvents()
-
-        #for time, event in events:
-        #    print time
-
         lEventT= charlie.epoch
         lEvent = None
         now    = dt.datetime.now(charlie.TIMEZONE)
-        # print "It's now: %s" % now
-
         for date, key in events:
             if abs( date - now ) < abs( lEventT - now ):
                 lEventT, lEvent = date, key
@@ -69,3 +82,4 @@ class Train:
         goodies["TargetTime"] = t
         goodies["TimeRemaining"] = delt
         self.stopdata[goodies["PlatformKey"]] = goodies
+        self.link_stops()
