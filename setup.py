@@ -2,7 +2,7 @@
 # Copyright (c) Sunlight Labs, 2012 under the terms and conditions
 # of the LICENSE file.
 
-from sunlight import __appname__, __version__
+from charlie import __appname__, __version__
 from setuptools import setup
 
 long_description = open('README.rst').read()
