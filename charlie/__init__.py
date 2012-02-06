@@ -13,12 +13,16 @@ TIMEZONE     = tz.gettz('America/New_York')
 #                                ^^^^^^^^
 #                              Yankees Suck!
 epoch    = dt.datetime(1970, 1, 1, tzinfo=TIMEZONE)
-MAX_PING = 20 # in seconds
+MAX_PING = 120 # in seconds
 
 stop_list    = charlie.stops.stops
 station_list = charlie.stations.stations
 line_list    = charlie.lines.lines
 train_list   = charlie.trains.trains
+
+def get_station_by_stop( platform ):
+    stop = stop_list[platform]
+    return station_list[stop.getStationName()]
 
 __appname__ = "python-charlie"
 __version__ = "0.1~pre1"

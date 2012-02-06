@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import charlie
+import datetime as dt
 
 for train in charlie.train_list:
     train = charlie.train_list[train]
@@ -12,4 +13,15 @@ for train in charlie.train_list:
     if not preStop:
         continue
 
-    print ( curStop["TargetTime"] - preStop["TargetTime"] )
+    curStation = charlie.get_station_by_stop( curStop["PlatformKey"] )
+    preStation = charlie.get_station_by_stop( preStop["PlatformKey"] )
+
+    payload = {
+        "root" : {
+            "id" : curStation.name
+        },
+        "dest" : {
+            "id" : preStation.name    
+        }
+    }
+    print payload
