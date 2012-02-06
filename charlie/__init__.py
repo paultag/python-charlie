@@ -13,7 +13,7 @@ TIMEZONE     = tz.gettz('America/New_York')
 #                                ^^^^^^^^
 #                              Yankees Suck!
 epoch    = dt.datetime(1970, 1, 1, tzinfo=TIMEZONE)
-MAX_PING = 120 # in seconds
+MAX_PING = 30 # in seconds
 
 stop_list    = charlie.stops.stops
 station_list = charlie.stations.stations

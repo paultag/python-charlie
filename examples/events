@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+
+import charlie
+import datetime as dt
+import time
+
+inter = 1
+
+lkloc = {}
+
+while True:
+    time.sleep(inter)
+    charlie.refresh()
+    for train in charlie.train_list:
+        t = charlie.train_list[train]
+        event = t.getMostCloseEvent()
+        try:
+            if lkloc[train] != event["PlatformKey"]:
+                print "Train event: %s" % train
+        except KeyError:
+            print "New Train: %s" % train
+        lkloc[train] = event["PlatformKey"]

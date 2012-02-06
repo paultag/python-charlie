@@ -51,15 +51,6 @@ class Train:
                 lEventT, lEvent = date, key
         return lEvent
 
-    def getLastKnownEvent(self):
-        lke = { "TargetTime" : charlie.epoch } # XXX: Fixme
-        # print self.stopdata
-        for item in self.stopdata:
-            d = self.stopdata[item]["TargetTime"]
-            if d > lke["TargetTime"]:
-                lke = self.stopdata[item]
-        return lke
-
     def addInfo(self, goodies):
         if goodies["Trip"] != self.name:
             raise Exception("That's not me!") # XXX: Fixme
