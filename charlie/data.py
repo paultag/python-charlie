@@ -14,6 +14,8 @@ def load_trains( line ):
         if not tripid in cT.trains:
             t = cT.Train( tripid )
             cT.trains[tripid] = t
+        else:
+            t = cT.trains[tripid]
         t.addInfo( train )
 
 

@@ -36,4 +36,6 @@ _apiurl     = "http://developer.mbta.com/Data/"
 _datadir    = "/home/tag/dev/local/python-charlie/data"
 _csvfile    = _datadir + "/station.data.csv"
 
-charlie.data.load_data( _csvfile )
+def refresh():
+    return charlie.data.load_data( _csvfile )
+refresh()
