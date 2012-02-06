@@ -17,7 +17,7 @@ setup(
 
     long_description = long_description,
     description      = 'Boston MBTA Data',
-    license          = "Expat",
+    license          = "GPLv3",
     url              = "https://github.com/paultag/python-charlie",
 
     platforms        = ['any']
