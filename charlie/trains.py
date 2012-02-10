@@ -32,11 +32,10 @@ class Train:
         return self.name
 
     def getNextEvent(self, f=None):
-        if f == None:
-            f = self.getMostCloseEvent()
-        if f["InformationType"] != "Predicted":
+        f = self.getMostCloseEvent()
+        if f["TargetTime"] < dt.datetime.now(charlie.TIMEZONE):
             try:
-                return self.getNextEvent( self.stopdata[f["next"]] )
+                return self.stopdata[f["next"]]
             except KeyError:
                 return None
         return f
