@@ -16,7 +16,8 @@ while True:
         event = t.getMostCloseEvent()
         try:
             if lkloc[train] != event["PlatformKey"]:
-                print "Train event: %s" % train
+                print "Train event: %s at %s" % ( train, 
+                    charlie.get_station_by_stop( event["PlatformKey"] ).name )
         except KeyError:
             print "New Train: %s" % train
         lkloc[train] = event["PlatformKey"]

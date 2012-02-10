@@ -24,8 +24,8 @@ def get_station_by_stop( platform ):
     stop = stop_list[platform]
     return station_list[stop.getStationName()]
 
-__appname__ = "python-charlie"
-__version__ = "0.1~pre1"
+__appname__ = "charlie"
+__version__ = "0.5"
 
 _cache_folder_raw = "~/.python-charlie"
 _cache_folder     = os.path.expanduser(_cache_folder_raw)
