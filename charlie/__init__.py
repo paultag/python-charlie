@@ -10,10 +10,8 @@ import dateutil.tz as tz
 import datetime as dt
 
 TIMEZONE     = tz.gettz('America/New_York')
-#                                ^^^^^^^^
-#                              Yankees Suck!
 epoch    = dt.datetime(1970, 1, 1, tzinfo=TIMEZONE)
-MAX_PING = 30 # in seconds
+MAX_PING = 30  # in seconds
 
 stop_list    = charlie.stops.stops
 station_list = charlie.stations.stations
@@ -33,7 +31,8 @@ _cache_folder     = os.path.expanduser(_cache_folder_raw)
 _apiurl     = "http://developer.mbta.com/Data/"
 # _apiurl     = "http://tag.pault.ag/charlie-fake/"
 # _apiurl      = "http://localhost/"
-_datadir    = "/usr/share/charlie/data"
+# _datadir    = "/usr/share/charlie/data"
+_datadir    = "%s/platform_data" % ( os.path.dirname(os.path.abspath(__file__)))
 _csvfile    = _datadir + "/station.data.csv"
 
 def refresh():

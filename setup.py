@@ -10,7 +10,8 @@ long_description = open('README.rst').read()
 setup(
     name       = __appname__,
     version    = __version__,
-    packages   = [ 'charlie' ],
+    packages   = [ 'charlie',
+                   'platform_data' ],
 
     author       = "Paul Tagliamonte",
     author_email = "paultag@ubuntu.com",
