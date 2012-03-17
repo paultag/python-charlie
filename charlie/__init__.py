@@ -33,7 +33,7 @@ _cache_folder     = os.path.expanduser(_cache_folder_raw)
 _apiurl     = "http://developer.mbta.com/Data/"
 # _apiurl     = "http://tag.pault.ag/charlie-fake/"
 # _apiurl      = "http://localhost/"
-_datadir    = "/home/tag/dev/local/python-charlie/data"
+_datadir    = "/usr/share/charlie/data"
 _csvfile    = _datadir + "/station.data.csv"
 
 def refresh():
