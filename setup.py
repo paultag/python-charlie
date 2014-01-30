@@ -10,7 +10,7 @@ setup(
     name=__appname__,
     version=__version__,
     packages=['charlie',],
-    package_data={'charlie': "*csv"},
+    package_data={'charlie': ["*csv"]},
 
     author="Paul Tagliamonte",
     author_email="tag@pault.ag",
